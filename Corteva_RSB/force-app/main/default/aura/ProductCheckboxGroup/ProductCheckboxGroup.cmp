@@ -1,0 +1,81 @@
+<aura:component implements="lightning:availableForFlowScreens" access="global" controller ="ProductCheckboxGroupApex">
+    <!--Declare Event Handlers--> 
+    <aura:handler name="init" action="{!c.doInit}" value="{!this}"/>
+    
+    <!--Declare Attributes-->
+    <aura:attribute name="productList" type="list" />
+    <aura:attribute name="selectedProducts" type="string" /> 
+    <aura:attribute name="isSelectAll" type="boolean" default="false"/>
+    <aura:attribute name="relatedAccount" type="string" />
+    <aura:attribute name="disc_options" type="String[]" default=",Year 1,Year 2,Year 3,Year 4,Year 5"/>
+
+    <aura:if isTrue="{!empty(v.productList)}">
+        <div style="font-weight: bold;color:red;font-size:18px;">
+                 There are no 'Account Product Overview' records.  Return to Accounts.
+        </div>
+    </aura:if>
+        
+    <aura:if isTrue="{!not(empty(v.productList))}">
+        <div class="slds-m-around_xx-small">
+            <p class="slds-text-title">*Select Products</p>
+            <br/>
+            <!--Product List Table-->
+            <table class="slds-table slds-table--bordered slds-table_cell-buffer" role="grid">      
+                <thead>  
+                    <tr class="slds-text-title--caps">
+                        <th>           
+                            <label class="slds-checkbox">
+                                <ui:inputCheckbox value="{!v.isSelectAll}" change="{!c.handleSelectAllProduct}" aura:id="selectAll"/>
+                                <span class="slds-checkbox--faux" />
+                                <span class="slds-form-element__label"></span>
+                            </label>
+                        </th>
+                        <th scope="col">
+                            <div class="slds-truncate" title="fProduct_Name__c">Name</div>
+                        </th>
+                        <th scope="col">
+                            <div class="slds-truncate" title="Discontinuance__c">Discontinuance</div>
+                        </th>
+                        <th scope="col">
+                            <div class="slds-truncate" title="fEPA_Number__c">EPA Number</div>
+                        </th>
+                         
+                        <th scope="col">
+                            <div class="slds-truncate" title="Renewal_Date__c">Renewal Date</div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>        
+                    <aura:iteration items="{!v.productList}" var="prod">
+                        <tr>
+                            <th>
+                                <label class="slds-checkbox">
+                                    <ui:inputCheckbox aura:id="checkProduct" value="" text="{!prod.Product__c}" change="{!c.handleSelectedProducts}"/>
+                                    <span class="slds-checkbox--faux" />
+                                    <span class="slds-form-element__label"></span>
+                                </label>
+                            </th>
+                            <th scope="row">
+                                <div class="slds-truncate" title="{!prod.fProduct_Name__c}">{!prod.fProduct_Name__c}</div>
+                            </th>
+                            <th scope="row">
+                                    <lightning:select name="select" value="{!prod.Discontinuance__c}">
+                                        <aura:iteration items="{!v.disc_options}" var="option">
+                                            <option text="{!option}" value="{!option}"/>
+                                        </aura:iteration>
+                                    </lightning:select>
+                            </th>
+                            <td>
+                                <div class="slds-truncate" title="{!prod.fEPA_Number__c}">{!prod.fEPA_Number__c}</div>
+                            </td>
+                            <th scope="row">
+                                <div class="slds-truncate" title="{!prod.Renewal_Date__c}">{!prod.Renewal_Date__c}</div>
+                            </th>
+                        </tr>
+                    </aura:iteration>
+                </tbody>
+            </table>
+        </div>
+    </aura:if>
+
+</aura:component>

@@ -1,0 +1,24 @@
+<apex:page sidebar="false" showHeader="false" controller="azureTestPageController">
+    <apex:form style="padding-left:30px; padding-top:10px;">
+        <apex:outputPanel id="result">
+            <b>Access Token Result :</b> {!accessTokenResult} <br/>
+            <b>Access Token :</b> {!accessToken} <br/>
+            <!--<b>Message Count Result :</b> {!messageCountResult} <br/>-->
+            <b>Send to Azure Rresult :</b> {!sendToAzureResult} <br/>
+            <!--<b>Receive From Azure Result :</b> {!receiveFromAzureResult} <br/><br/><br/>-->
+
+            <!--<b>Access Token Result 2 :</b> {!accessTokenResult2} <br/>
+            <b>Access Token 2 :</b> {!accessToken2} <br/>
+            <b>Message Count Result 2 :</b> {!messageCountResult2} <br/>
+            <b>Active Message Count Result 2 :</b> {!activeMessageCountResult2} <br/>-->
+        </apex:outputPanel>
+        <br/>
+        <!--<apex:commandButton value="Get Access Token" action="{!getAccessToken}" reRender="result"/><br/>
+        <apex:commandButton value="Get Message Count" action="{!getMessageCount}" reRender="result"/><br/>-->
+        <apex:commandButton value="Send to Azure" action="{!sendToAzure}" reRender="result"/><br/>
+        <!--<apex:commandButton value="Receive from Azure" action="{!receiveFromAzure}" reRender="result"/><br/><br/><br/>-->
+
+        <!--<apex:commandButton value="Get Access Token 2" action="{!getAccessToken2}" reRender="result"/><br/>
+        <apex:commandButton value="Get Message Count 2 " action="{!getMessageCount2}" reRender="result"/>-->
+    </apex:form>
+</apex:page>

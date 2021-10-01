@@ -1,0 +1,34 @@
+<aura:component implements="lightning:availableForFlowScreens" access="global" controller ="AccountCheckboxGroupApex">
+    <!--Declare Event Handlers--> 
+    <aura:handler name="init" action="{!c.doInit}" value="{!this}"/>
+     
+    <!--Declare Attributes-->
+    <aura:attribute name="accountList" type="list" />
+    <aura:attribute name="selectedAccounts" type="string" /> 
+    <aura:attribute name="isSelectAll" type="boolean" default="false"/>
+    <aura:attribute name="accountType" type="string" />
+     
+    <div class="slds-m-around_xx-small">
+        <legend class="slds-form-element__legend slds-form-element__label">
+    	<abbr class="slds-required" title="required">*</abbr> Select Accounts: </legend>
+        <!--Account List Table-->
+        <div class="slds-form-element__control">
+            <div>
+                <label class="slds-checkbox">
+                    <ui:inputCheckbox value="{!v.isSelectAll}" change="{!c.handleSelectAllAccount}" aura:id="selectAll"/>
+                    <span class="slds-checkbox--faux" />
+                	<span class="slds-form-element__label slds-text-body_regular slds-p-top_none slds-m-left_x-small">Select All</span>
+                </label>
+            </div>
+            <div>
+                <aura:iteration items="{!v.accountList}" var="acct">
+                    <label class="slds-checkbox slds-p-horizontal_none">
+                        <ui:inputCheckbox aura:id="checkAccount" value="" text="{!acct.Id}" change="{!c.handleSelectedAccounts}"/>
+                        <span class="slds-checkbox--faux" />
+                        <span class="slds-form-element__label slds-text-body_regular slds-p-top_none slds-m-left_x-small">{!acct.Name}</span>
+                    </label>
+                </aura:iteration>
+            </div>
+        </div>
+    </div>
+</aura:component>

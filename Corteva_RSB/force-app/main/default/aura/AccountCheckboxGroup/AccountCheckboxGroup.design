@@ -1,0 +1,4 @@
+<design:component>
+	<design:attribute name="accountType" label="accountType"/>
+    <design:attribute name="selectedAccounts" label="SelectedAccounts" /> 
+</design:component>

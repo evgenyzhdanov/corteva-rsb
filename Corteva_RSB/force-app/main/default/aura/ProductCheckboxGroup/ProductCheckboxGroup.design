@@ -1,0 +1,4 @@
+<design:component>
+	<design:attribute name="relatedAccount" label="RelatedAccount"/>
+    <design:attribute name="selectedProducts" label="SelectedProducts" /> 
+</design:component>
